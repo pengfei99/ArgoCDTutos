@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bgd-app-ingress
+spec:
+  tls:
+    - hosts:
+        - bgd-app.kub.sspcloud.fr
+  rules:
+    - host: bgd-app.kub.sspcloud.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bgd-svc
+                port:
+                  number: 8080
